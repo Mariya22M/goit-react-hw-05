@@ -7,19 +7,19 @@ import GoBackBtn from "../components/GoBackBtn/GoBackBtn";
 import { useRef } from "react";
 
 const MovieDetailsPage = () => {
-	const { id } = useParams();
-	const { data: movie, error, isLoading } = useHttp("details", id);
-	const location = useLocation();
-	const backLink = useRef(location.state ?? "/");
+  const { id } = useParams(); // Отримуємо параметр id з URL
+  const { data: movie, error, isLoading } = useHttp("details", id); // Використовуємо хук для отримання даних фільму
+  const location = useLocation(); // Отримуємо об'єкт location
+  const backLink = useRef(location.state ?? "/"); // Зберігаємо попереднє посилання або кореневий шлях
 
-	return (
-		<section>
-			{error && <Error message={error} />}
-			{isLoading && <Loader />}
-			<GoBackBtn link={backLink.current} />
-			<MovieInfo movie={movie ? movie : {}} />
-		</section>
-	);
+  return (
+    <section>
+          {error && <Error message={error} />}
+          {isLoading && <Loader />} 
+      <GoBackBtn link={backLink.current} /> 
+      <MovieInfo movie={movie ? movie : {}} /> 
+    </section>
+  );
 };
 
 export default MovieDetailsPage;
